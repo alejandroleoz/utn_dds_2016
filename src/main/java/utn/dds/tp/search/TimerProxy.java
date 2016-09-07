@@ -10,6 +10,9 @@ import java.util.Date;
  */
 public class TimerProxy extends AbstractBuscador {
 
+    // todo: sacar el hardcode
+    private static long MAX_DURATION = 1000;
+
     private long startTime;
     private long endTime;
 
@@ -28,6 +31,12 @@ public class TimerProxy extends AbstractBuscador {
         this.startTimer();
         Collection<POI> result = this.getBuscador().buscar(texto, instante);
         this.stopTimer();
+
+        // notificar si es necesario
+        if(this.getDuracion() > MAX_DURATION){
+            this.sendMail();
+        }
+
         return result;
     }
 
@@ -41,6 +50,10 @@ public class TimerProxy extends AbstractBuscador {
 
     private void stopTimer() {
         this.endTime = new Date().getTime();
+    }
+
+    private void sendMail() {
+        // todo implement!!!
     }
 
 }
