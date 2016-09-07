@@ -2,6 +2,7 @@ package utn.dds.tp.manager;
 
 import utn.dds.tp.datasource.FuenteExterna;
 import utn.dds.tp.poi.POI;
+import utn.dds.tp.search.Buscador;
 
 import java.util.*;
 
@@ -13,6 +14,9 @@ public class POIManager {
     private Map<Long, POI> pois = new HashMap<>();
     private Collection<FuenteExterna> fuentesExternas = new ArrayList<>();
 
+    // 3ra entrega
+    private Buscador buscador;
+
 
     /**
      * Busqueda de POIs mediante un texto libre
@@ -20,23 +24,8 @@ public class POIManager {
      * @return
      */
     public Collection<POI> buscar(String texto) {
-        Collection<POI> result = new ArrayList<>();
-
-        // fuente de datos local
-        for(POI poi : this.pois.values()) {
-            if(poi.contieneTexto(texto)){
-                result.add(poi);
-            }
-        }
-
-        // fuentes de datos externas
-        Collection<POI> resultExterna;
-        for(FuenteExterna ext : this.fuentesExternas){
-            resultExterna = ext.consultar(Arrays.asList(texto));
-            result.addAll(resultExterna);
-        }
-
-        return result;
+        this.buscador.setConfig(this.pois, this.fuentesExternas);
+        return this.buscador.buscar(texto);
     }
 
     /**
@@ -46,28 +35,8 @@ public class POIManager {
      * @return
      */
     public Collection<POI> buscar(String texto, Date instante) {
-        Collection<POI> result = new ArrayList<>();
-
-        // fuente de datos local
-        for(POI poi : this.pois.values()) {
-            if(poi.contieneTexto(texto) && poi.estaDisponible(instante)){
-                result.add(poi);
-            }
-        }
-
-        // fuentes de datos externas
-        Collection<POI> resultExterna;
-        for(FuenteExterna ext : this.fuentesExternas){
-            resultExterna = ext.consultar(Arrays.asList(texto));
-
-            // de las que vinieron, veo cuales estan disponibles...
-            for(POI poi : resultExterna){
-                if(poi.estaDisponible(instante)){
-                    result.add(poi);
-                }
-            }
-        }
-        return result;
+        this.buscador.setConfig(this.pois, this.fuentesExternas);
+        return this.buscador.buscar(texto, instante);
     }
 
     public POI getPOIbyId(Long id) {
@@ -126,5 +95,10 @@ public class POIManager {
 
     public void setFuentesExternas(Collection<FuenteExterna> fuentesExternas) {
         this.fuentesExternas = fuentesExternas;
+    }
+
+    // 3ra entrega
+    public void setBuscador(Buscador buscador) {
+        this.buscador = buscador;
     }
 }
