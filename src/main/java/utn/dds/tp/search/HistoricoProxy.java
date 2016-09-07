@@ -1,6 +1,8 @@
 package utn.dds.tp.search;
 
+import utn.dds.tp.manager.ReportManager;
 import utn.dds.tp.poi.POI;
+import utn.dds.tp.report.BusquedaEntry;
 
 import java.util.Collection;
 import java.util.Date;
@@ -31,6 +33,8 @@ public class HistoricoProxy extends AbstractBuscador {
     }
 
     private void crearRegistroHistorico(String texto, Collection<POI> result) {
+
+        // TODO: Esta forma no es la mejor, pero es importante identificarla para poder REFACTORIZARLA luego
         long duracion = 0;
         try{
             TimerProxy timer = (TimerProxy) this.getBuscador();
@@ -38,7 +42,18 @@ public class HistoricoProxy extends AbstractBuscador {
         }catch (Exception e){
             // el buscador no es un timer
         }
-        System.out.println("Duracion: " + duracion + "ms");
-        // todo implementar
+        // ---------------------------------------------------------------
+
+        BusquedaEntry entry = new BusquedaEntry();
+        entry.setFecha(new Date());
+        entry.setQuery(texto);
+        entry.setResultados(result.size());
+        entry.setDuracion(duracion);
+
+        // Todo -> Terminal!!!
+//        entry.setTerminal();
+
+        // uso singleton
+        ReportManager.getInstance().addEntry(entry);
     }
 }

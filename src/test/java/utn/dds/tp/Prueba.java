@@ -3,7 +3,9 @@ package utn.dds.tp;
 import utn.dds.tp.datasource.BancoAdapter;
 import utn.dds.tp.datasource.CGPAdapter;
 import utn.dds.tp.manager.POIManager;
+import utn.dds.tp.manager.ReportManager;
 import utn.dds.tp.poi.POI;
+import utn.dds.tp.report.Reporte;
 import utn.dds.tp.search.BuscadorConcreto;
 import utn.dds.tp.search.HistoricoProxy;
 import utn.dds.tp.search.TimerProxy;
@@ -33,11 +35,13 @@ public class Prueba {
         poiManager.setFuentesExternas(Arrays.asList(new BancoAdapter(), new CGPAdapter()));
         poiManager.setBuscador(historicoProxy);
 
-        Collection<POI> pois = poiManager.buscar("Alm");
+        Collection<POI> pois = poiManager.buscar("");
+        pois = poiManager.buscar("cobro");
+        pois = poiManager.buscar("cobro");
+        pois = poiManager.buscar("cobro");
 
-        for (POI poi : pois) {
-            System.out.println(poi.getNombre());
-        }
+        Reporte reporte = ReportManager.getInstance().crearTotalPorFecha();
+        reporte.print();
 
 
     }
