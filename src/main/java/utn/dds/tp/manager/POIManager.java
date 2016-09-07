@@ -123,4 +123,8 @@ public class POIManager {
         return id;
     }
 
+
+    public void setFuentesExternas(Collection<FuenteExterna> fuentesExternas) {
+        this.fuentesExternas = fuentesExternas;
+    }
 }
