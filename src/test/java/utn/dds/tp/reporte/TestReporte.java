@@ -3,10 +3,9 @@ package utn.dds.tp.reporte;
 import org.junit.Assert;
 import org.junit.Test;
 import utn.dds.tp.Flyweight;
-import utn.dds.tp.datasource.BancoAdapter;
-import utn.dds.tp.datasource.CGPAdapter;
+import utn.dds.tp.datasource.MockBancoAdapter;
+import utn.dds.tp.datasource.MockCGPAdapter;
 import utn.dds.tp.manager.POIManager;
-import utn.dds.tp.poi.POI;
 import utn.dds.tp.report.Reporte;
 import utn.dds.tp.search.BuscadorConcreto;
 import utn.dds.tp.search.HistoricoProxy;
@@ -14,7 +13,6 @@ import utn.dds.tp.search.TimerProxy;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 
@@ -37,15 +35,13 @@ public class TestReporte {
         historicoProxy.setBuscador(timer);
 
         POIManager poiManager = Flyweight.getInstance().getPoiManager();
-        poiManager.setFuentesExternas(Arrays.asList(new BancoAdapter(), new CGPAdapter()));
+        poiManager.setFuentesExternas(Arrays.asList(new MockBancoAdapter(), new MockCGPAdapter()));
         poiManager.setBuscador(historicoProxy);
 
-        // TODO: habría que Mockear el servicio externo!!
-
-        // devuelve 1 resultaod (banco santander)
+        // devuelve 5 resultaos
         poiManager.buscar("tand");
 
-        // devuelve 1 resultado (zona almagro)
+        // devuelve 5 resultados
         poiManager.buscar("almagro");
 
         Reporte reporte = Flyweight.getInstance().getReportManager().crearTotalPorFecha();
@@ -61,7 +57,7 @@ public class TestReporte {
             for (Map.Entry<Date, Integer> entry : filas.entrySet()) {
                 Date date = entry.getKey();
                 Assert.assertTrue("Fecha actual", this.checkDates(date, currentDate));
-                Assert.assertEquals("Cantidad", 2, entry.getValue().intValue());
+                Assert.assertEquals("Cantidad", 10, entry.getValue().intValue());
             }
             field.setAccessible(false);
         } catch (Exception e) {
