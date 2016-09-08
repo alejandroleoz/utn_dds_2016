@@ -1,6 +1,6 @@
 package utn.dds.tp.search;
 
-import utn.dds.tp.manager.ReportManager;
+import utn.dds.tp.Flyweight;
 import utn.dds.tp.poi.POI;
 import utn.dds.tp.report.BusquedaEntry;
 
@@ -54,6 +54,6 @@ public class HistoricoProxy extends AbstractBuscador {
 //        entry.setTerminal();
 
         // uso singleton
-        ReportManager.getInstance().addEntry(entry);
+        Flyweight.getInstance().getReportManager().addEntry(entry);
     }
 }

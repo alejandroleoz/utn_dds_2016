@@ -3,7 +3,6 @@ package utn.dds.tp;
 import utn.dds.tp.datasource.BancoAdapter;
 import utn.dds.tp.datasource.CGPAdapter;
 import utn.dds.tp.manager.POIManager;
-import utn.dds.tp.manager.ReportManager;
 import utn.dds.tp.poi.POI;
 import utn.dds.tp.report.Reporte;
 import utn.dds.tp.search.BuscadorConcreto;
@@ -40,7 +39,7 @@ public class Prueba {
         pois = poiManager.buscar("cobro");
         pois = poiManager.buscar("cobro");
 
-        Reporte reporte = ReportManager.getInstance().crearTotalPorFecha();
+        Reporte reporte = Flyweight.getInstance().getReportManager().crearTotalPorFecha();
         reporte.print();
 
 

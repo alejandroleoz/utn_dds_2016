@@ -12,23 +12,11 @@ import java.util.*;
  */
 public class ReportManager {
 
-    /* ********* Singleton *************************/
-    private static ReportManager instance = null;
+    private Collection<BusquedaEntry> registro;
 
-    public static ReportManager getInstance() {
-        if (instance == null){
-            instance = new ReportManager();
-        }
-        return instance;
-    }
-
-    private ReportManager(){
+    public ReportManager(){
         this.registro = new ArrayList<>();
     }
-    /* ******************************************/
-
-
-    private Collection<BusquedaEntry> registro;
 
     public void addEntry(BusquedaEntry entry) {
         this.registro.add(entry);
