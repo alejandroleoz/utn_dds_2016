@@ -22,17 +22,9 @@ public class TestBuscador {
         // buscador concreto
         BuscadorConcreto buscador = new BuscadorConcreto();
 
-        // timer
-        TimerProxy timer = new TimerProxy();
-        timer.setBuscador(buscador);
-
-        // historico Proxy
-        HistoricoProxy historicoProxy = new HistoricoProxy();
-        historicoProxy.setBuscador(timer);
-
         POIManager poiManager = Flyweight.getInstance().getPoiManager();
         poiManager.setFuentesExternas(Arrays.asList(new BancoAdapter(), new CGPAdapter()));
-        poiManager.setBuscador(historicoProxy);
+        poiManager.setBuscador(buscador);
 
         // TODO: habría que Mockear el servicio externo!!
 
