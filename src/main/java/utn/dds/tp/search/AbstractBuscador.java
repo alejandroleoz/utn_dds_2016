@@ -2,6 +2,7 @@ package utn.dds.tp.search;
 
 import utn.dds.tp.datasource.FuenteExterna;
 import utn.dds.tp.poi.POI;
+import utn.dds.tp.user.Usuario;
 
 import java.util.*;
 
@@ -33,5 +34,17 @@ public abstract class AbstractBuscador implements Buscador {
 
     public Collection<FuenteExterna> getFuentesExternas() {
         return fuentesExternas;
+    }
+
+    @Override
+    // Default implementation
+    public Collection<POI> buscar(String texto, Usuario terminal) {
+        return this.buscar(texto);
+    }
+
+    @Override
+    // Default implementation
+    public Collection<POI> buscar(String texto, Date instante, Usuario terminal) {
+        return this.buscar(texto, instante);
     }
 }

@@ -10,6 +10,8 @@ import utn.dds.tp.report.Reporte;
 import utn.dds.tp.search.BuscadorConcreto;
 import utn.dds.tp.search.HistoricoProxy;
 import utn.dds.tp.search.TimerProxy;
+import utn.dds.tp.user.Terminal;
+import utn.dds.tp.user.Usuario;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -34,15 +36,17 @@ public class TestReporte {
         HistoricoProxy historicoProxy = new HistoricoProxy();
         historicoProxy.setBuscador(timer);
 
+        Usuario terminal = new Usuario("terminal1", "aaabbbccc", Flyweight.getInstance().getRole(Terminal.ROLE));
+
         POIManager poiManager = Flyweight.getInstance().getPoiManager();
         poiManager.setFuentesExternas(Arrays.asList(new MockBancoAdapter(), new MockCGPAdapter()));
         poiManager.setBuscador(historicoProxy);
 
         // devuelve 5 resultaos
-        poiManager.buscar("tand");
+        poiManager.buscar("tand", terminal);
 
         // devuelve 5 resultados
-        poiManager.buscar("almagro");
+        poiManager.buscar("almagro", terminal);
 
         Reporte reporte = Flyweight.getInstance().getReportManager().crearTotalPorFecha();
         reporte.print();

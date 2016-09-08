@@ -3,6 +3,7 @@ package utn.dds.tp.manager;
 import utn.dds.tp.datasource.FuenteExterna;
 import utn.dds.tp.poi.POI;
 import utn.dds.tp.search.Buscador;
+import utn.dds.tp.user.Usuario;
 
 import java.util.*;
 
@@ -29,6 +30,16 @@ public class POIManager {
     }
 
     /**
+     * Busqueda de POIs mediante un texto libre, asociando un usuario a la consulta
+     * @param texto
+     * @return
+     */
+    public Collection<POI> buscar(String texto, Usuario terminal) {
+        this.buscador.setConfig(this.pois, this.fuentesExternas);
+        return this.buscador.buscar(texto, terminal);
+    }
+
+    /**
      * Busqueda de POIs mediante texto libre y fecha (instante)
      * @param texto
      * @param instante
@@ -37,6 +48,17 @@ public class POIManager {
     public Collection<POI> buscar(String texto, Date instante) {
         this.buscador.setConfig(this.pois, this.fuentesExternas);
         return this.buscador.buscar(texto, instante);
+    }
+
+    /**
+     * Busqueda de POIs mediante texto libre y fecha (instante), asociando un usuario a la consulta
+     * @param texto
+     * @param instante
+     * @return
+     */
+    public Collection<POI> buscar(String texto, Date instante, Usuario terminal) {
+        this.buscador.setConfig(this.pois, this.fuentesExternas);
+        return this.buscador.buscar(texto, instante, terminal);
     }
 
     public POI getPOIbyId(Long id) {
