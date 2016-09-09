@@ -1,6 +1,8 @@
 package utn.dds.tp.report;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,8 +17,26 @@ public class TotalPorTerminal implements Reporte<String, Integer> {
     }
 
     @Override
-    public void print() {
+    public String getTitulo() {
+        // todo: hardcodeado!
+        return "Totales por terminal";
+    }
 
+    @Override
+    public List<String> getEncabezados() {
+        // todo!!
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<List<String>> getFilasFormateadas() {
+        // todo !!!
+        return Collections.emptyList();
+    }
+
+    @Override
+    public void export(ExportStrategy estrategia) {
+        estrategia.exportar(this);
     }
 
 }

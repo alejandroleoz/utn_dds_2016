@@ -2,8 +2,7 @@ package utn.dds.tp.report;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by aleoz on 9/7/16.
@@ -17,14 +16,33 @@ public class TotalPorFecha implements Reporte<Date, Integer> {
     }
 
     @Override
-    public void print() {
+    public String getTitulo() {
+        // todo: hardcodeado!
+        return "Totales por fecha";
+    }
+
+    @Override
+    public List<String> getEncabezados() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<List<String>> getFilasFormateadas() {
+        // todo: hardcoded
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-        System.out.println("Totales por fecha");
-        System.out.println("-------------------");
-        for (Map.Entry<Date, Integer> entry : filas.entrySet()) {
-            System.out.println(format.format(entry.getKey()) + ": " + entry.getValue());
+        List<List<String>> result = new ArrayList<>();
+        for (Map.Entry<Date, Integer> entry : this.filas.entrySet()) {
+            List<String> fila = new ArrayList<>();
+            fila.add(format.format(entry.getKey()));
+            fila.add(entry.getValue().toString());
+            result.add(fila);
         }
-        System.out.println();
+        return result;
+    }
+
+    @Override
+    public void export(ExportStrategy estrategia) {
+        estrategia.exportar(this);
     }
 }

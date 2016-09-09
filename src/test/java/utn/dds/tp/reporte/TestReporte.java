@@ -6,6 +6,7 @@ import utn.dds.tp.Flyweight;
 import utn.dds.tp.datasource.MockBancoAdapter;
 import utn.dds.tp.datasource.MockCGPAdapter;
 import utn.dds.tp.manager.POIManager;
+import utn.dds.tp.report.ExportStandardOutput;
 import utn.dds.tp.report.Reporte;
 import utn.dds.tp.search.BuscadorConcreto;
 import utn.dds.tp.search.HistoricoProxy;
@@ -49,7 +50,7 @@ public class TestReporte {
         poiManager.buscar("almagro", terminal);
 
         Reporte reporte = Flyweight.getInstance().getReportManager().crearTotalPorFecha();
-        reporte.print();
+        reporte.export(new ExportStandardOutput());
 
         try {
             Field field = reporte.getClass().getDeclaredField("filas");
