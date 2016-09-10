@@ -23,12 +23,13 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- GEO CALC -->
-    <!-- https://github.com/grumlimited/geocalc -->
+    <!-- GEO CALC (local dependency) -->
     <dependency>
       <groupId>com.grum</groupId>
-      <artifactId>geocalc</artifactId>
+      <artifactId>com.grum</artifactId>
       <version>0.5.1</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/geocalc-0.5.1.jar</systemPath>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
