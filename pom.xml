@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>utn.dds.tp</groupId>
-  <artifactId>poi</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>dds2016</artifactId>
+  <version>0.9</version>
   <packaging>jar</packaging>
 
   <name>poi</name>
@@ -23,12 +23,13 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- GEO CALC -->
-    <!-- https://github.com/grumlimited/geocalc -->
+    <!-- GEO CALC (local dependency) -->
     <dependency>
       <groupId>com.grum</groupId>
-      <artifactId>geocalc</artifactId>
+      <artifactId>com.grum</artifactId>
       <version>0.5.1</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/geocalc-0.5.1.jar</systemPath>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -66,6 +67,27 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.7.7.201606060606</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
