@@ -8,8 +8,8 @@ language: java
 jdk:
 - oraclejdk8
 
-addons:
-  artifacts: true
+#addons:
+#  artifacts: true
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
@@ -20,9 +20,9 @@ deploy:
   api_key:
     secure: B7/4EfnzTRPCLXG8Vf3GsOh5rEX/CNwtjKfaNC3cQSBh8L2dbI669z8wHP87RQ17jwWImN+z7Tlxl6auF1wUI9GIl6zxNMvb0PSSWFXbz4Xi/VSKqZLQuxDL30k42WRNkVA3qrSHbmjN3DBu2shmtTIkT6BM+WylyyzDIBe2S70UBTDkbqRJ3YH3e9WLLz5EBr5f6TSZz4Wmu5tSijv5/WOFx2T4Oc90iRmZmzA/yQVYA00n6CVwzH9/CHVyoRI3M2m/C2+G8AbHZG3RiSl7n/R1MWdTxYe3JWAh102imbLSSYNIEJSUXvW57YGeJeFyJ5RF76ILTUytXlultCLLTpia7qWRiGM9LJETf27fVYgJ7yB1bJlcGzUXrY4kxmWmj+lSLx3/tgPewiFrH3omg4vyBwWVUwnQqvs/dDKH3Azw4KAbgAnzvKmoPnX/iEkPWnOdLQE72ogR2769WwZgaZiHGX8sM3lJzL5GPH08V5Rioqr5MWYYGuYj86zJCNxQwlq+2yz5qcTPcmKLvYDo/mAPk5Vz/L2XJLr2jiTxN7J11rK9vTRN3VK4iMiiIzS8h3da9qcfvVUps1Fyt+soEpyO9VRrpnEhzlv/QdFgPcQf9zg1MkQvhUtAqasI/gwqGX5QN97nXmErBLN2j6ayo2+q+bByJHyHpO5xJfUtzVA=
   file_glob: true
-  file: "${RELEASE_PKG_FILE}"
+  file: target/"${RELEASE_PKG_FILE}"
   skip_cleanup: true
   on:
     repo: alejandroleoz/utn_dds_2016
-    branch: master
+    branch: develop
 
