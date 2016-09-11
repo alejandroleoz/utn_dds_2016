@@ -24,5 +24,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: alejandroleoz/utn_dds_2016
-    branch: develop
-
+    tags: true
