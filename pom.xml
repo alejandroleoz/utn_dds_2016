@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>utn.dds.tp</groupId>
-  <artifactId>poi</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>dds2016</artifactId>
+  <version>0.9</version>
   <packaging>jar</packaging>
 
   <name>poi</name>
